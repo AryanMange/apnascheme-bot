@@ -1117,28 +1117,28 @@ app.post('/gupshup', express.json(), async (req, res) => {
           noSchemeMessage = `माफ कीजिए, आपके लिए अभी कोई सरकारी योजना उपलब्ध नहीं है 😔\n\n` +
                           `नए स्कीम्स जोड़े जाते रहते हैं – कृपया 15 दिन बाद दोबारा जांचें।`+
                            `अपने दोस्तों को भेजें और ₹60 कमाएं:`+
-                           `https://wa.me/?text=मैंने%20ApnaScheme%20से%20${eligibleSchemes.length}%20योजनाएं%20प्राप्त%20की%20हैं!%20आप%20भी%20पाएं%20अपने%20लिए%20सरकारी%20योजनाएं:%20wa.me/917977594397?text=Hi\n\n`+
+                           `https://wa.me/?text=मैंने%20ApnaScheme%20से%20योजनाएं%20प्राप्त%20की%20हैं!%20आप%20भी%20पाएं%20अपने%20लिए%20सरकारी%20योजनाएं:%20wa.me/917977594397?text=Hi\n\n`+
                             `हर 3 दोस्तों के ₹49 भुगतान करने पर आपको ₹60 मिलेगा! 🤑`;
         } 
         else if (user.language === '3') { // Marathi
           noSchemeMessage = `क्षमस्व, सध्या आपल्यासाठी कोणतीही सरकारी योजना उपलब्ध नाही 😔\n\n` +
                           `नवीन योजना सतत जोडल्या जातात – कृपया १५ दिवसांनी पुन्हा तपासा.`+
                            `मित्रांना पाठवा आणि ₹60 मिळवा:`+
-                          `https://wa.me/?text=मी%20ApnaScheme%20मधून%20${eligibleSchemes.length}%20योजना%20मिळवल्या!%20तुम्ही%20ही%20मिळवा:%20wa.me/917977594397?text=Hi\n\n`+
+                          `https://wa.me/?text=मी%20ApnaScheme%20मधून%20योजना%20मिळवल्या!%20तुम्ही%20ही%20मिळवा:%20wa.me/917977594397?text=Hi\n\n`+
                            `प्रत्येक 3 मित्रांसाठी जे ₹49 भरतील तुम्हाला ₹60 मिळेल! 🤑`;
         } 
            else if (user.language === '4') { // Gujarati
     noSchemeMessage = `માફ કરશો, હાલમાં તમારા માટે કોઈ સરકારી યોજના ઉપલબ્ધ નથી 😔\n\n` +
                     `નવી યોજનાઓ નિયમિત ઉમેરવામાં આવે છે - 15 દિવસ પછી ફરી તપાસો.\n` +
                     `મિત્રોને રેફર કરો અને ₹60 કમાઓ:\n` +
-                    `https://wa.me/?text=મને%20ApnaScheme%20માંથી%20${eligibleSchemes.length}%20યોજનાઓ%20મળી!%20તમે%20પણ%20મેળવો:%20wa.me/917977594397?text=Hi\n\n` +
+                    `https://wa.me/?text=મને%20ApnaScheme%20માંથી%20યોજનાઓ%20મળી!%20તમે%20પણ%20મેળવો:%20wa.me/917977594397?text=Hi\n\n` +
                     `દરેક 3 મિત્રો માટે જે ₹49 ચૂકવે છે તમને ₹60 મળશે! 🤑`;
   }
         else { // English (default)
           noSchemeMessage = `Sorry, there are currently no government schemes available for you 😔\n\n` +
                           `New schemes are added regularly – check again in 15 days!\n`+
                           `Refer friends & earn ₹60:\n`+
-                          `https://wa.me/?text=I%20got%20${eligibleSchemes.length}%20government%20schemes%20from%20ApnaScheme!%20You%20can%20too:%20wa.me/917977594397?text=Hi\n\n`+
+                          `https://wa.me/?text=I%20got%20government%20schemes%20from%20ApnaScheme!%20You%20can%20too:%20wa.me/917977594397?text=Hi\n\n`+
                           `Earn ₹60 for every 3 friends who pay ₹49! 🤑` ;
                           
         }
