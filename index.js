@@ -1069,7 +1069,8 @@ app.post('/gupshup', express.json(), async (req, res) => {
           "मेरे साथ, जानें \nकौन सी सरकारी योजनाएं आपके लिए हैं:\n" +
           "बिना एजेंट\nबिना फॉर्म\nबिना भ्रम\n\n"+
           "🗣️ अपनी भाषा चुनें \n(जवाब दें 1/2/3/4):\n" +
-          "1. हिंदी\n2. English\n3. मराठी\n4. ગુજરાતી "
+          "1. हिंदी\n2. English\n3. मराठी\n4. ગુજરાતી\n\n" +
+          "Note:\nApnaScheme is a private platform.\nWe guide you on schemes.\nFinal approval is by government."
         );
         return res.sendStatus(200);
       }
