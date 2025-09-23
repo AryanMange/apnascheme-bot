@@ -1157,8 +1157,8 @@ app.post('/gupshup', express.json(), async (req, res) => {
       }
       let closingMessage = "";
       if (user.language === '1') {
-        closingMessage = `₹50,000+ के लाभ UNLOCK करें! 😃\nआपके लिए ${eligibleSchemes.length} सरकारी योजनाएं.\n\n` +
-                      `केवल ₹49 में,\nतुरंत प्राप्त करें:\n` +
+        closingMessage = `आपके लिए ${eligibleSchemes.length} सरकारी योजनाएं.\n\n` +
+                      `₹49 दीजिए और ऐसी योजनाएँ खोजिए जो आपके ₹5,000 से ₹50,000 तक बचा सकती हैं।\nतुरंत प्राप्त करें:\n` +
                       `योजनाओं की पूरी सूची\n` +
                       `आसान एक्सेस के लिए सीधे आवेदन लिंक\n\n` +
                       `तुरंत लाभ उठाएँ!\nसीमित समय ऑफर: \n${paymentUrl}\n\n` +
@@ -1166,8 +1166,8 @@ app.post('/gupshup', express.json(), async (req, res) => {
                       `https://wa.me/?text=मैंने%20ApnaScheme%20से%20योजनाएं%20प्राप्त%20की%20हैं!%20आप%20भी%20पाएं%20अपने%20लिए%20सरकारी%20योजनाएं:%20wa.me/917977594397?text=Hi\n\n` +
                       `हर 3 दोस्तों के ₹49 भुगतान करने पर आपको ₹60 कैशबैक मिलेगा!`;
      } else if (user.language === '3') {
-  closingMessage = `₹50,000+ ची संधी! 😃\nतुम्हाला मिळू शकतात ${eligibleSchemes.length} सरकारी योजना.\n\n` +
-                `फक्त ₹49 मध्ये,\nताबडतोब मिळवा:\n` +
+  closingMessage = `तुम्हाला मिळू शकतात ${eligibleSchemes.length} सरकारी योजना.\n\n` +
+                `₹49 द्या आणि अश्या योजना शोधा ज्या तुमचे ₹5,000 ते ₹50,000 पर्यंत वाचवू शकतात.\nताबडतोब मिळवा:\n` +
                 `योजनांची संपूर्ण यादी\n` +
                 `अर्जासाठी थेट लिंक\n\n` +
                 `लगेच अर्ज करा!\nमर्यादित वेळ ऑफर: \n${paymentUrl}\n\n` +
@@ -1175,8 +1175,8 @@ app.post('/gupshup', express.json(), async (req, res) => {
                 `https://wa.me/?text=मी%20ApnaScheme%20मधून%20योजना%20मिळवल्या!%20तुम्ही%20ही%20मिळवा:%20wa.me/917977594397?text=Hi\n\n` +
                 `प्रत्येक 3 मित्रांसाठી जे ₹49 भरतील तुम्हाला ₹60 कॅशबॅक मिळेल!`;
  } else if (user.language === '2') {
-      closingMessage = `Benefits worth ₹50,000+! 😃\nYou are eligible for ${eligibleSchemes.length} government schemes.\n\n` +
-                `For just ₹49,\nGet instantly:\n` +
+      closingMessage = `You are eligible for ${eligibleSchemes.length} government schemes.\n\n` +
+                `Pay ₹49,discover schemes that can save you ₹5,000 to ₹50,000.\nGet instantly:\n` +
                 `Complete list of schemes\n` +
                 `Direct links for application\n\n` +
                 `Apply immediately!\nLimited time offer:\n${paymentUrl}\n\n` +
@@ -1184,8 +1184,8 @@ app.post('/gupshup', express.json(), async (req, res) => {
                 `https://wa.me/?text=I%20got%20schemes%20from%20ApnaScheme!%20You%20should%20get%20them%20too:%20wa.me/917977594397?text=Hi\n\n` +
                 `For every 3 friends who pay ₹49, you will get ₹60 cashback!`;   
       } else { // Gujarati
-  closingMessage = `₹50,000+ ના લાભ UNLOCK કરો! 😃\nતમારા માટે ${eligibleSchemes.length} સરકારી યોજનાઓ.\n\n` +
-                `માત્ર ₹49 માં,\nતાત્કાલિક મેળવો:\n` +
+  closingMessage = `તમારા માટે ${eligibleSchemes.length} સરકારી યોજનાઓ.\n\n` +
+                `₹49 આપો અને એવી યોજનાઓ શોધો જે તમારા ₹5,000 થી ₹50,000 સુધીની બચત કરી શકે.\nતાત્કાલિક મેળવો:\n` +
                 `બધી પાત્ર યોજનાઓની યાદી\n` +
                 `સીધી અરજી લિંક્સ\n\n` +
                 `હમણાં જ કાર્યવાહી કરો!\nમર્યાદિત સમય ઑફર: \n${paymentUrl}\n\n` +
