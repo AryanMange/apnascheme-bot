@@ -536,12 +536,9 @@ app.get('/pay', async (req, res) => {
 <body>
     <div class="card">
         <h2>ApnaScheme Eligibility Plan</h2>
-        <div class="price">One-time payment of ₹49</div>
+        <div class="price">1293 users discovered eligible schemes today</div>
                 <!-- Counter Section -->
-        <div class="counter-container">
-            <div class="counter-text">Users discovered eligible schemes today</div>
-            <div class="counter-number">1,293</div>
-        </div>
+     
                 
         <div id="payment-status" class="payment-status">
             <div class="loader"></div>
