@@ -1160,37 +1160,37 @@ app.post('/gupshup', express.json(), async (req, res) => {
       let closingMessage = "";
       if (user.language === '1') {
         closingMessage = `आपके लिए ${eligibleSchemes.length} सरकारी योजनाएं.\n\n` +
-                      `₹49 दीजिए और ऐसी योजनाएँ खोजिए जो आपके ₹5,000 से ₹50,000 तक बचा सकती हैं।\nतुरंत प्राप्त करें:\n` +
+                      `इस सप्ताह पहले ही 1000 से अधिक उपयोगकर्ताओं को अपने लाभ मिल चुके हैं।\nतुरंत प्राप्त करें:\n` +
                       `योजनाओं की पूरी सूची\n` +
                       `आसान एक्सेस के लिए सीधे आवेदन लिंक\n\n` +
-                      `बिना सही मार्गदर्शन के, हर 10 में से 7 लोग उन लाभों को प्राप्त करने में असफल रहते हैं, जिनके वे हकदार हैं।\nApnaScheme यह सुनिश्चित करता है कि आप उनमें से एक न हों।\nसरकारी benefits पाने के लिए सिर्फ ₹49 — यह तो एक कप चाय के भी कम है। \n${paymentUrl}\n\n` +
+                      `बिना सही मार्गदर्शन के, हर 10 में से 7 लोग उन लाभों को प्राप्त करने में असफल रहते हैं, जिनके वे हकदार हैं।\nApnaScheme यह सुनिश्चित करता है कि आप उनमें से एक न हों।\nसरकारी benefits पाओ \n${paymentUrl}\n\n` +
                       `अपने दोस्तों को भेजें और ₹60 कमाएं:\n` +
                       `https://wa.me/?text=मैंने%20ApnaScheme%20से%20योजनाएं%20प्राप्त%20की%20हैं!%20आप%20भी%20पाएं%20अपने%20लिए%20सरकारी%20योजनाएं:%20wa.me/917977594397?text=Hi\n\n` +
                       `हर 3 दोस्तों के ₹49 भुगतान करने पर आपको ₹60 कैशबैक मिलेगा!`;
      } else if (user.language === '3') {
   closingMessage = `तुम्हाला मिळू शकतात ${eligibleSchemes.length} सरकारी योजना.\n\n` +
-                `₹49 द्या आणि अश्या योजना शोधा ज्या तुमचे ₹5,000 ते ₹50,000 पर्यंत वाचवू शकतात.\nताबडतोब मिळवा:\n` +
+                `या आठवड्यात आधीच 1000 हून अधिक वापरकर्त्यांना त्यांचे फायदे मिळाले आहेत.\nताबडतोब मिळवा:\n` +
                 `योजनांची संपूर्ण यादी\n` +
                 `अर्जासाठी थेट लिंक\n\n` +
-                `योग्य मार्गदर्शनाशिवाय, दहापैकी सात लोक त्यांना मिळायला हवे असलेले फायदे मिळवण्यात अयशस्वी ठरतात.\nApnaScheme हे सुनिश्चित करते की आपण त्यापैकी एक नाही.\nसरकारी लाअभ मिळवण्यासाठी फक्त ₹४९ — हे एका कप चहापेक्षाही कमी आहे. \n${paymentUrl}\n\n` +
+                `योग्य मार्गदर्शनाशिवाय, दहापैकी सात लोक त्यांना मिळायला हवे असलेले फायदे मिळवण्यात अयशस्वी ठरतात.\nApnaScheme हे सुनिश्चित करते की आपण त्यापैकी एक नाही.\nसरकारी लाभ मिळवा\n${paymentUrl}\n\n` +
                 `मित्रांना पाठवा आणि ₹60 मिळवा:\n` +
                 `https://wa.me/?text=मी%20ApnaScheme%20मधून%20योजना%20मिळवल्या!%20तुम्ही%20ही%20मिळवा:%20wa.me/917977594397?text=Hi\n\n` +
                 `प्रत्येक 3 मित्रांसाठી जे ₹49 भरतील तुम्हाला ₹60 कॅशबॅक मिळेल!`;
  } else if (user.language === '2') {
       closingMessage = `You are eligible for ${eligibleSchemes.length} government schemes.\n\n` +
-                `Pay ₹49,discover schemes that can save you ₹5,000 to ₹50,000.\nGet instantly:\n` +
+                `1000+ users already got their benefits this week.\nGet\n` +
                 `Complete list of schemes\n` +
-                `Direct links for application\n\n` +
-                `Without the right guidance, 7 out of 10 people fail to get the benefits they deserve.\nApnaScheme ensures you’re not one of them.\n₹49 to unlock government benefits — that’s less than a cup of chai!\n${paymentUrl}\n\n` +
+                `Direct links for application\nAll for ₹49 — not even half a pizza 🍕\n\n` +
+                `Without the right guidance, 7 out of 10 people fail to get the benefits they deserve.\nApnaScheme ensures you’re not one of them.\nUnlock your government benefits\n${paymentUrl}\n\n` +
                 `Send to friends and earn ₹60:\n` +
                 `https://wa.me/?text=I%20got%20schemes%20from%20ApnaScheme!%20You%20should%20get%20them%20too:%20wa.me/917977594397?text=Hi\n\n` +
                 `For every 3 friends who pay ₹49, you will get ₹60 cashback!`;   
       } else { // Gujarati
   closingMessage = `તમારા માટે ${eligibleSchemes.length} સરકારી યોજનાઓ.\n\n` +
-                `₹49 આપો અને એવી યોજનાઓ શોધો જે તમારા ₹5,000 થી ₹50,000 સુધીની બચત કરી શકે.\nતાત્કાલિક મેળવો:\n` +
+                `આ અઠવાડિયામાં જ 1000+ ઉપયોગકર્તાઓને તેમના ફાયદા મળી ચુક્યા છે.\nતાત્કાલિક મેળવો:\n` +
                 `બધી પાત્ર યોજનાઓની યાદી\n` +
                 `સીધી અરજી લિંક્સ\n\n` +
-                `યોગ્ય માર્ગદર્શન વિના, 10 માંથી 7 લોકો તેમને મળવા લાયક લાભો મેળવવામાં નિષ્ફળ જાય છે.\nApnaScheme ખાતરી કરે છે કે તમે તેમાંનો એક નહિં બનો.\nસરકારી લાભ મેળવવા માત્ર ₹49 — એ તો એક કપ ચાના પેટા કરતાંય સસ્તું. \n${paymentUrl}\n\n` +
+                `યોગ્ય માર્ગદર્શન વિના, 10 માંથી 7 લોકો તેમને મળવા લાયક લાભો મેળવવામાં નિષ્ફળ જાય છે.\nApnaScheme ખાતરી કરે છે કે તમે તેમાંનો એક નહિં બનો.\nતમારા ફાયદા મેળવો  \n${paymentUrl}\n\n` +
                 `મિત્રોને રેફર કરો અને ₹60 કમાઓ:\n` +
                 `https://wa.me/?text=મને%20ApnaScheme%20માંથી%20યોજનાઓ%20મળી!%20તમે%20પણ%20મેળવો:%20wa.me/917977594397?text=Hi\n\n` +
                 `દરેક 3 મિત્રો માટે જે ₹49 ચૂકવે છે તમને ₹60 કેશબેક મળશે!`;
