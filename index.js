@@ -343,7 +343,25 @@ const getNextQuestion = (user) => {
   
   return null;
 };
+// Utility: make a short one-line preview for a scheme
+function oneLinePreview(scheme, lang = '2') {
+  const name = scheme.SchemeName || 'Unnamed Scheme';
+  const category = scheme.Category ? String(scheme.Category) : '';
+  const state = scheme.TargetState ? String(scheme.TargetState) : '';
+  const incomeLimit = scheme.IncomeLimit ? String(scheme.IncomeLimit) : '';
 
+  const core = [category, state ? `State: ${state}` : '', incomeLimit ? `Income ≤ ${incomeLimit}` : ''].filter(Boolean).join(' | ');
+
+  if (lang === '1') { // Hindi
+    return `${name} — ${core || 'विवरण उपलब्ध नहीं'}`;
+  } else if (lang === '3') { // Marathi
+    return `${name} — ${core || 'माहिती उपलब्ध नाही'}`;
+  } else if (lang === '4') { // Gujarati
+    return `${name} — ${core || 'માહિતી ઉપલબ્ધ નથી'}`;
+  }
+  // English default
+  return `${name} — ${core || 'No description available'}`;
+}
 // Routes
 app.get('/', (req, res) => {
   res.send('✅ ApnaScheme Bot is running with MongoDB integration');
