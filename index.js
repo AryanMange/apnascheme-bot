@@ -343,25 +343,7 @@ const getNextQuestion = (user) => {
   
   return null;
 };
-// Utility: make a short one-line preview for a scheme
-function oneLinePreview(scheme, lang = '2') {
-  const name = scheme.SchemeName || 'Unnamed Scheme';
-  const category = scheme.Category ? String(scheme.Category) : '';
-  const state = scheme.TargetState ? String(scheme.TargetState) : '';
-  const incomeLimit = scheme.IncomeLimit ? String(scheme.IncomeLimit) : '';
 
-  const core = [category, state ? `State: ${state}` : '', incomeLimit ? `Income ≤ ${incomeLimit}` : ''].filter(Boolean).join(' | ');
-
-  if (lang === '1') { // Hindi
-    return `${name} — ${core || 'विवरण उपलब्ध नहीं'}`;
-  } else if (lang === '3') { // Marathi
-    return `${name} — ${core || 'माहिती उपलब्ध नाही'}`;
-  } else if (lang === '4') { // Gujarati
-    return `${name} — ${core || 'માહિતી ઉપલબ્ધ નથી'}`;
-  }
-  // English default
-  return `${name} — ${core || 'No description available'}`;
-}
 // Routes
 app.get('/', (req, res) => {
   res.send('✅ ApnaScheme Bot is running with MongoDB integration');
@@ -379,7 +361,7 @@ app.get('/order', async (req, res) => {
     }
 
     const options = {
-      amount: 100, // ₹49 in paise
+      amount: 4900, // ₹49 in paise
       currency: 'INR',
       receipt: `rcpt_${phone}_${Date.now()}`,
       notes: { phone }
@@ -1167,30 +1149,6 @@ app.post('/gupshup', express.json(), async (req, res) => {
         await sendMessage(phone, noSchemeMessage);
         return res.sendStatus(200);
       }
-      const previewCount = 2;
-      const topTwo = eligibleSchemes.slice(0, previewCount);
-      const previewLines = topTwo.map(s => oneLinePreview(s, user.language || '2'));
-
-      let previewHeader = '';
-      if (user.language === '1') previewHeader = `यहां आपके लिए चुनिंदा योजनाएँ (पूर्वावलोकन):\n\n`;
-      else if (user.language === '3') previewHeader = `आपल्यासाठी निवडक योजना (पूर्वावलोकन):\n\n`;
-      else if (user.language === '4') previewHeader = `તમારા માટે પસંદ કરેલી યોજનાઓ (પૂર્ણ દર્શન):\n\n`;
-      else previewHeader = `Here are 2 eligible schemes for you (preview):\n\n`;
-
-      let previewText = previewHeader;
-      previewLines.forEach((line, idx) => {
-        previewText += `${idx + 1}. ${line}\n`;
-      });
-      previewText += `\n`; // spacer
-      if (user.language === '1') previewText += `पूरा विवरण और आवेदन लिंक भुगतान के बाद भेजे जाएंगे।\n\n`;
-      else if (user.language === '3') previewText += `संपूर्ण तपशील आणि अर्ज लिंक्स देयकानंतर पाठवल्या जातील.\n\n`;
-      else if (user.language === '4') previewText += `પૂરો વિગત અને અરજી લિંક્સ ચુકવણી પછી મોકલાશે.\n\n`;
-      else previewText += `Full details and application links will be sent after payment.\n\n`;
-
-      // Ensure referral code exists
-
-
-
 
       // Only show payment link if there are eligible schemes
       const paymentUrl = `${req.protocol}://${req.get('host')}/pay?phone=${phone}${user.referredBy ? `&ref=${user.referredBy}` : ''}`;
