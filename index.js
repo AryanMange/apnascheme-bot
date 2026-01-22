@@ -12,7 +12,6 @@ dotenv.config();
 const app = express();
 
 // MongoDB Connection
-// Updated MongoDB connection with better error handling
 const connectDB = async () => {
   try {
     const MONGODB_URI = process.env.MONGODB_URI;
@@ -32,7 +31,6 @@ const connectDB = async () => {
   }
 };
 
-// Call this when starting your app
 connectDB();
 
 // MongoDB User Schema
@@ -207,6 +205,7 @@ async function loadSchemes() {
     });
   });
 }
+
 function getEligibleSchemes(userResponses, hasCriticalIllness = false) {
   const [gender, age, occupation, income, hasBank, hasRation, state, caste] = userResponses;
 
@@ -286,10 +285,10 @@ function getEligibleSchemes(userResponses, hasCriticalIllness = false) {
     }
 
     // 🔴 Bank account must be present
-  if (scheme.BankAccountRequired === true) {
-  const acceptedValues = ['yes', 'हाँ', 'होय', 'haan', 'हां', 'y'];
-  if (!acceptedValues.includes(hasBankLower)) return false;
-}
+    if (scheme.BankAccountRequired === true) {
+      const acceptedValues = ['yes', 'हाँ', 'होय', 'haan', 'हां', 'y'];
+      if (!acceptedValues.includes(hasBankLower)) return false;
+    }
     return true;
   });
 }
@@ -349,7 +348,7 @@ app.get('/', (req, res) => {
   res.send('✅ ApnaScheme Bot is running with MongoDB integration');
 });
 
-// Razorpay Payment Flow
+// Razorpay Payment Flow - UPDATED TO ₹9
 app.get('/order', async (req, res) => {
   const { phone } = req.query;
   
@@ -361,7 +360,7 @@ app.get('/order', async (req, res) => {
     }
 
     const options = {
-      amount: 4900, // ₹49 in paise
+      amount: 900, // ₹9 in paise (UPDATED from 4900)
       currency: 'INR',
       receipt: `rcpt_${phone}_${Date.now()}`,
       notes: { phone }
@@ -393,7 +392,7 @@ app.get('/pay', async (req, res) => {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eligibility Plan - ApnaScheme</title>
+    <title>₹9 Complete Scheme Access - ApnaScheme</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -535,10 +534,8 @@ app.get('/pay', async (req, res) => {
 </head>
 <body>
     <div class="card">
-        <h2>ApnaScheme Eligibility Plan</h2>
-        <div class="price">1293 users discovered eligible schemes today</div>
-                <!-- Counter Section -->
-     
+        <h2>₹9 Complete Scheme Access</h2>
+        <div class="price">5000+ users paid ₹9 today!</div>
                 
         <div id="payment-status" class="payment-status">
             <div class="loader"></div>
@@ -561,9 +558,9 @@ app.get('/pay', async (req, res) => {
         // Animate status text while loading
         const statusText = paymentStatus.querySelector('.status-text');
         const statusMessages = [
-            "1,250 Indians already found schemes worth ₹2 lakh through ApnaScheme.",
+            "1 cup of chai = ₹20 | All your govt schemes = ₹9",
             "Almost ready...",
-            "Setting up your plan..."
+            "Unlocking your schemes..."
         ];
         let counter = 0;
         
@@ -587,7 +584,7 @@ app.get('/pay', async (req, res) => {
               amount: data.amount,
               currency: data.currency,
               name: 'ApnaScheme',
-              description: '₹49 Eligibility Plan',
+              description: '₹9 Scheme Access', // UPDATED
               order_id: data.orderId,
               handler: function(response) {
                 window.location.href = '/success?phone=' + phone;
@@ -806,9 +803,9 @@ app.get('/success', (req, res) => {
                 <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
             </svg>
         </div>
-        <h1>Payment Successful!</h1>,
-        <p>You just unlocked your personalized government benefit list.</p>1
-        <p>Check your WhatsApp for the scheme details.</p>
+        <h1>Payment Successful! 🎉</h1>
+        <p>You just unlocked your personalized government schemes for <strong>just ₹9</strong>!</p>
+        <p>Check your WhatsApp for all scheme details and application links.</p>
         
         <div class="divider"></div>
         
@@ -932,7 +929,7 @@ app.post('/razorpay-webhook', bodyParser.raw({type: 'application/json'}), async 
 
     console.log('✅ Payment verified and user updated for phone:', phone);
 
-    // Referral logic - AFTER successful payment
+    // Referral logic - AFTER successful payment - UPDATED TO ₹9/₹30
     if (
       user.referredBy &&
       user.referredBy !== user.phone &&       // prevent self-referral
@@ -948,8 +945,20 @@ app.post('/razorpay-webhook', bodyParser.raw({type: 'application/json'}), async 
         const paidSets = referrer.referralRewardedSets || 0;
 
         if (totalSets > paidSets) {
-          await sendMessage(referrer.phone,
-            `बधाई हो! आपके 3 referrals ने ₹49 भुगतान किया है। ₹60 cashback जल्द भेजा जाएगा।`);
+          // Send message based on referrer's language
+          const lang = referrer.language || '2';
+          let message = '';
+          if (lang === '1') {
+            message = `बधाई हो! आपके 3 referrals ने ₹9 भुगतान किया है। ₹30 cashback जल्द भेजा जाएगा।`;
+          } else if (lang === '3') {
+            message = `अभिनंदन! तुमच्या 3 referrals ने ₹9 भरले आहेत। ₹30 cashback लवकरच पाठवला जाईल।`;
+          } else if (lang === '4') {
+            message = `અભિનંદન! તમારા 3 referrals ને ₹9 ચુકવણી કરી છે। ₹30 કેશબેક ટૂંક સમયમાં મોકલવામાં આવશે।`;
+          } else {
+            message = `Congratulations! Your 3 referrals paid ₹9. ₹30 cashback will be sent shortly.`;
+          }
+          
+          await sendMessage(referrer.phone, message);
 
           // Update paid sets count
           referrer.referralRewardedSets = totalSets;
@@ -964,47 +973,75 @@ app.post('/razorpay-webhook', bodyParser.raw({type: 'application/json'}), async 
     const eligibleSchemes = getEligibleSchemes(user.responses);
     const lang = user.language || '2';
 
-    // Format message with proper line breaks and links
+    // Format message with proper line breaks and links - ENHANCED FOR ₹9 VALUE
     let message;
     if (lang === '1') { // Hindi
-      message = ` योजनाओं के नाम और उनके आवेदन लिंक:\n\n`;
-      eligibleSchemes.forEach(scheme => {
-        message += `📌 ${scheme.SchemeName}\n` +
-                   ` आवेदन: ${scheme.OfficialLink || 'लिंक उपलब्ध नहीं'}\n` +
-                   ` विधि: ${scheme.ApplicationMode}\n\n`;
+      message = `✅ **आपकी पूरी योजना सूची (सिर्फ ₹9 में!):**\n\n`;
+      message += `आपने सिर्फ ₹9 में पाए:\n`;
+      message += `• ${eligibleSchemes.length} योजनाएं\n`;
+      message += `• सभी के आवेदन लिंक\n`;
+      message += `• ₹${eligibleSchemes.length * 1000}+ का संभावित लाभ\n\n`;
+      
+      eligibleSchemes.forEach((scheme, index) => {
+        message += `📌 **${scheme.SchemeName}**\n`;
+        message += `🔗 आवेदन: ${scheme.OfficialLink || 'सरकारी वेबसाइट पर जाएं'}\n`;
+        message += `📝 विधि: ${scheme.ApplicationMode}\n`;
+        message += `---\n`;
       });
-      message += `रसीद ID: ${payment.id}\n` +
-                 `अपना स्कीम को चुनने के लिए धन्यवाद 😊 `;
+      message += `\n🧾 आर्डर ID: ${payment.id}\n`;
+      message += `📞 मदद चाहिए? 7977594397 पर WhatsApp करें\n`;
+      message += `_आपकी सफलता हमारी खुशी है!_`;
     } 
     else if (lang === '3') { // Marathi
-      message = ` योजनांची नावे आणि अर्ज लिंक:\n\n`;
-      eligibleSchemes.forEach(scheme => {
-        message += `📌 ${scheme.SchemeName}\n` +
-                   ` अर्ज: ${scheme.OfficialLink || 'लिंक उपलब्ध नाही'}\n` +
-                   ` पद्धत: ${scheme.ApplicationMode}\n\n`;
+      message = `✅ **तुमची संपूर्ण योजना यादी (फक्त ₹9 मध्ये!):**\n\n`;
+      message += `तुम्ही फक्त ₹9 मध्ये मिळवले:\n`;
+      message += `• ${eligibleSchemes.length} योजना\n`;
+      message += `• सर्वांचे अर्ज लिंक\n`;
+      message += `• ₹${eligibleSchemes.length * 1000}+ चा संभाव्य फायदा\n\n`;
+      
+      eligibleSchemes.forEach((scheme, index) => {
+        message += `📌 **${scheme.SchemeName}**\n`;
+        message += `🔗 अर्ज: ${scheme.OfficialLink || 'सरकारी वेबसाईट वर जा'}\n`;
+        message += `📝 पद्धत: ${scheme.ApplicationMode}\n`;
+        message += `---\n`;
       });
-      message += `पावती ID: ${payment.id}\n` +
-                 `अप्नास्कीम निवडल्याबद्दल धन्यवाद 😊 `;
+      message += `\n🧾 ऑर्डर ID: ${payment.id}\n`;
+      message += `📞 मदत हवी? 7977594397 वर WhatsApp करा\n`;
+      message += `_तुमची यशस्वीता आमची आनंद आहे!_`;
     } 
-      else if (lang === '4') { // Gujarati
-  message = ` યોજનાઓના નામ અને તેમના અરજી લિંક્સ:\n\n`;
-  eligibleSchemes.forEach(scheme => {
-    message += `📌 ${scheme.SchemeName}\n` +
-               ` અરજી: ${scheme.OfficialLink || 'લિંક ઉપલબ્ધ નથી'}\n` +
-               ` પદ્ધતિ: ${scheme.ApplicationMode}\n\n`;
-  });
-  message += `રસીદ ID: ${payment.id}\n` +
-             `ApnaScheme પસંદ કરવા બદલ આભાર 😊 `;
-      }
-    else { // English (default)
-      message = ` Scheme names with their application links:\n\n`;
-      eligibleSchemes.forEach(scheme => {
-        message += `📌 ${scheme.SchemeName}\n` +
-                   ` Apply: ${scheme.OfficialLink || 'Link not available'}\n` +
-                   ` Mode: ${scheme.ApplicationMode}\n\n`;
+    else if (lang === '4') { // Gujarati
+      message = `✅ **તમારી સંપૂર્ણ યોજનાઓની યાદી (માત્ર ₹9 માં!):**\n\n`;
+      message += `તમે માત્ર ₹9 માં મેળવ્યું:\n`;
+      message += `• ${eligibleSchemes.length} યોજનાઓ\n`;
+      message += `• બધાની અરજી લિંક્સ\n`;
+      message += `• ₹${eligibleSchemes.length * 1000}+ નો સંભવિત ફાયદો\n\n`;
+      
+      eligibleSchemes.forEach((scheme, index) => {
+        message += `📌 **${scheme.SchemeName}**\n`;
+        message += `🔗 અરજી: ${scheme.OfficialLink || 'સરકારી વેબસાઇટ પર જાઓ'}\n`;
+        message += `📝 પદ્ધતિ: ${scheme.ApplicationMode}\n`;
+        message += `---\n`;
       });
-      message += `Receipt ID: ${payment.id}\n` +
-                 `Thank you for choosing ApnaScheme 😊`;
+      message += `\n🧾 ઓર્ડર ID: ${payment.id}\n`;
+      message += `📞 મદદ જોઈએ? 7977594397 પર WhatsApp કરો\n`;
+      message += `_તમારી સફળતા અમારી ખુશી છે!_`;
+    }
+    else { // English (default)
+      message = `✅ **Your Complete Scheme List (for just ₹9!):**\n\n`;
+      message += `You got for just ₹9:\n`;
+      message += `• ${eligibleSchemes.length} schemes\n`;
+      message += `• Application links for all\n`;
+      message += `• ₹${eligibleSchemes.length * 1000}+ potential benefit\n\n`;
+      
+      eligibleSchemes.forEach((scheme, index) => {
+        message += `📌 **${scheme.SchemeName}**\n`;
+        message += `🔗 Apply: ${scheme.OfficialLink || 'Visit government website'}\n`;
+        message += `📝 Mode: ${scheme.ApplicationMode}\n`;
+        message += `---\n`;
+      });
+      message += `\n🧾 Order ID: ${payment.id}\n`;
+      message += `📞 Need help? WhatsApp 7977594397\n`;
+      message += `_Your success is our happiness!_`;
     }
 
     // Ensure message length is within WhatsApp limits
@@ -1027,7 +1064,7 @@ app.post('/razorpay-webhook', bodyParser.raw({type: 'application/json'}), async 
   }
 });
 
-// Gupshup WhatsApp Integration
+// Gupshup WhatsApp Integration - UPDATED WITH ₹9 PREVIEW
 app.post('/gupshup', express.json(), async (req, res) => {
   try {
     if (!req.body || !req.body.payload) {
@@ -1118,85 +1155,135 @@ app.post('/gupshup', express.json(), async (req, res) => {
         
         if (user.language === '1') { // Hindi
           noSchemeMessage = `माफ कीजिए, आपके लिए अभी कोई सरकारी योजना उपलब्ध नहीं है 😔\n\n` +
-                          `नए स्कीम्स जोड़े जाते रहते हैं – कृपया 15 दिन बाद दोबारा जांचें।`+
-                           `अपने दोस्तों को भेजें और ₹60 कमाएं:`+
-                           `https://wa.me/?text=मैंने%20ApnaScheme%20से%20योजनाएं%20प्राप्त%20की%20हैं!%20आप%20भी%20पाएं%20अपने%20लिए%20सरकारी%20योजनाएं:%20wa.me/917977594397?text=Hi\n\n`+
-                            `हर 3 दोस्तों के ₹49 भुगतान करने पर आपको ₹60 मिलेगा! 💰`;
+                          `नए स्कीम्स जोड़े जाते रहते हैं – कृपया 15 दिन बाद दोबारा जांचें।\n` +
+                          `अपने दोस्तों को भेजें और ₹30 कमाएं:\n` +
+                          `https://wa.me/?text=मैंने%20ApnaScheme%20से%20योजनाएं%20प्राप्त%20की%20हैं!%20आप%20भी%20पाएं%20अपने%20लिए%20सरकारी%20योजनाएं:%20wa.me/917977594397?text=Hi\n\n` +
+                          `हर 3 दोस्तों के ₹9 भुगतान करने पर आपको ₹30 मिलेगा! 💰`;
         } 
         else if (user.language === '3') { // Marathi
           noSchemeMessage = `क्षमस्व, सध्या आपल्यासाठी कोणतीही सरकारी योजना उपलब्ध नाही 😔\n\n` +
-                          `नवीन योजना सतत जोडल्या जातात – कृपया १५ दिवसांनी पुन्हा तपासा.`+
-                           `मित्रांना पाठवा आणि ₹60 मिळवा:`+
-                          `https://wa.me/?text=मी%20ApnaScheme%20मधून%20योजना%20मिळवल्या!%20तुम्ही%20ही%20मिळवा:%20wa.me/917977594397?text=Hi\n\n`+
-                           `प्रत्येक 3 मित्रांसाठी जे ₹49 भरतील तुम्हाला ₹60 मिळेल! 💰`;
+                          `नवीन योजना सतत जोडल्या जातात – कृपया १५ दिवसांनी पुन्हा तपासा.\n` +
+                          `मित्रांना पाठवा आणि ₹30 मिळवा:\n` +
+                          `https://wa.me/?text=मी%20ApnaScheme%20मधून%20योजना%20मिळवल्या!%20तुम्ही%20ही%20मिळवा:%20wa.me/917977594397?text=Hi\n\n` +
+                          `प्रत्येक 3 मित्रांसाठी जे ₹9 भरतील तुम्हाला ₹30 मिळेल! 💰`;
         } 
-           else if (user.language === '4') { // Gujarati
-    noSchemeMessage = `માફ કરશો, હાલમાં તમારા માટે કોઈ સરકારી યોજના ઉપલબ્ધ નથી 😔\n\n` +
-                    `નવી યોજનાઓ નિયમિત ઉમેરવામાં આવે છે - 15 દિવસ પછી ફરી તપાસો.\n` +
-                    `મિત્રોને રેફર કરો અને ₹60 કમાઓ:\n` +
-                    `https://wa.me/?text=મને%20ApnaScheme%20માંથી%20યોજનાઓ%20મળી!%20તમે%20પણ%20મેળવો:%20wa.me/917977594397?text=Hi\n\n` +
-                    `દરેક 3 મિત્રો માટે જે ₹49 ચૂકવે છે તમને ₹60 મળશે! 💰`;
-  }
+        else if (user.language === '4') { // Gujarati
+          noSchemeMessage = `માફ કરશો, હાલમાં તમારા માટે કોઈ સરકારી યોજના ઉપલબ્ધ નથી 😔\n\n` +
+                          `નવી યોજનાઓ નિયમિત ઉમેરવામાં આવે છે - 15 દિવસ પછી ફરી તપાસો.\n` +
+                          `મિત્રોને રેફર કરો અને ₹30 કમાઓ:\n` +
+                          `https://wa.me/?text=મને%20ApnaScheme%20માંથી%20યોજનાઓ%20મળી!%20તમે%20પણ%20મેળવો:%20wa.me/917977594397?text=Hi\n\n` +
+                          `દરેક 3 મિત્રો માટે જે ₹9 ચૂકવે છે તમને ₹30 મળશે! 💰`;
+        }
         else { // English (default)
           noSchemeMessage = `Sorry, there are currently no government schemes available for you 😔\n\n` +
-                          `New schemes are added regularly – check again in 15 days!\n`+
-                          `Refer friends & earn ₹60:\n`+
-                          `https://wa.me/?text=I%20got%20government%20schemes%20from%20ApnaScheme!%20You%20can%20too:%20wa.me/917977594397?text=Hi\n\n`+
-                          `Earn ₹60 for every 3 friends who pay ₹49! 💰` ;
-                          
+                          `New schemes are added regularly – check again in 15 days!\n` +
+                          `Refer friends & earn ₹30:\n` +
+                          `https://wa.me/?text=I%20got%20government%20schemes%20from%20ApnaScheme!%20You%20can%20too:%20wa.me/917977594397?text=Hi\n\n` +
+                          `Earn ₹30 for every 3 friends who pay ₹9! 💰`;
         }
 
         await sendMessage(phone, noSchemeMessage);
         return res.sendStatus(200);
       }
 
-      // Only show payment link if there are eligible schemes
-      const paymentUrl = `${req.protocol}://${req.get('host')}/pay?phone=${phone}${user.referredBy ? `&ref=${user.referredBy}` : ''}`;
+      // Show 2 FREE schemes preview
+      const previewCount = Math.min(2, eligibleSchemes.length);
+      const topTwo = eligibleSchemes.slice(0, previewCount);
+      
+      let previewMessage = '';
+      
+      if (user.language === '1') { // Hindi
+        previewMessage = `🎯 **आपके लिए ${eligibleSchemes.length} योजनाएं मिलीं!**\n\n`;
+        previewMessage += `**मुफ्त पूर्वावलोकन (2 योजनाएं):**\n`;
+        topTwo.forEach((scheme, index) => {
+          previewMessage += `${index + 1}. ${scheme.SchemeName}\n`;
+        });
+        
+        previewMessage += `\n💰 **सिर्फ ₹9 में पाएं सबकुछ:**\n`;
+        previewMessage += `✅ सभी ${eligibleSchemes.length} योजनाओं की पूरी लिस्ट\n`;
+        previewMessage += `✅ हर योजना के आवेदन लिंक\n`;
+        previewMessage += `✅ दस्तावेज़ चेकलिस्ट\n`;
+        previewMessage += `✅ 24x7 सपोर्ट\n\n`;
+        
+        previewMessage += `📱 **अभी ₹9 पे करें (1 कप चाय से कम!):**\n`;
+      } 
+      else if (user.language === '2') { // English
+        previewMessage = `🎯 **Found ${eligibleSchemes.length} schemes for you!**\n\n`;
+        previewMessage += `**FREE Preview (2 schemes):**\n`;
+        topTwo.forEach((scheme, index) => {
+          previewMessage += `${index + 1}. ${scheme.SchemeName}\n`;
+        });
+        
+        previewMessage += `\n💰 **Get EVERYTHING for just ₹9:**\n`;
+        previewMessage += `✅ Complete list of all ${eligibleSchemes.length} schemes\n`;
+        previewMessage += `✅ Application links for each\n`;
+        previewMessage += `✅ Documents checklist\n`;
+        previewMessage += `✅ 24x7 support\n\n`;
+        
+        previewMessage += `📱 **Pay ₹9 now (less than a chai!):**\n`;
+      }
+      else if (user.language === '3') { // Marathi
+        previewMessage = `🎯 **तुम्हाला ${eligibleSchemes.length} योजना सापडल्या!**\n\n`;
+        previewMessage += `**मोफत पूर्वावलोकन (2 योजना):**\n`;
+        topTwo.forEach((scheme, index) => {
+          previewMessage += `${index + 1}. ${scheme.SchemeName}\n`;
+        });
+        
+        previewMessage += `\n💰 **फक्त ₹9 मध्ये सर्वकाही मिळवा:**\n`;
+        previewMessage += `✅ सर्व ${eligibleSchemes.length} योजनांची संपूर्ण यादी\n`;
+        previewMessage += `✅ प्रत्येकासाठी अर्ज लिंक\n`;
+        previewMessage += `✅ कागदपत्रांची यादी\n`;
+        previewMessage += `✅ 24x7 आधार\n\n`;
+        
+        previewMessage += `📱 **आत्ताच ₹9 भरा (एक चहा पेक्षा कमी!):**\n`;
+      }
+      else if (user.language === '4') { // Gujarati
+        previewMessage = `🎯 **તમારા માટે ${eligibleSchemes.length} યોજનાઓ મળી!**\n\n`;
+        previewMessage += `**મફત પૂર્વાવલોકન (2 યોજનાઓ):**\n`;
+        topTwo.forEach((scheme, index) => {
+          previewMessage += `${index + 1}. ${scheme.SchemeName}\n`;
+        });
+        
+        previewMessage += `\n💰 **માત્ર ₹9 માં બધું મેળવો:**\n`;
+        previewMessage += `✅ બધી ${eligibleSchemes.length} યોજનાઓની સંપૂર્ણ યાદી\n`;
+        previewMessage += `✅ દરેક માટે અરજી લિંક્સ\n`;
+        previewMessage += `✅ દસ્તાવેજોની યાદી\n`;
+        previewMessage += `✅ 24x7 સહાય\n\n`;
+        
+        previewMessage += `📱 **હમણાં ₹9 ચૂકવો (એક ચાના કરતાં ઓછા!):**\n`;
+      }
 
+      // Generate referral code if not exists
       if (!user.referralCode) {
         user.referralCode = generateReferralCode(phone);
         await user.save();
       }
-      let closingMessage = "";
-      if (user.language === '1') {
-        closingMessage = `आपके लिए ${eligibleSchemes.length} सरकारी योजनाएं.\n\n` +
-                      `इस सप्ताह पहले ही 1000 से अधिक उपयोगकर्ताओं को अपने लाभ मिल चुके हैं।\nतुरंत प्राप्त करें:\n` +
-                      `योजनाओं की पूरी सूची\n` +
-                      `आसान एक्सेस के लिए सीधे आवेदन लिंक\n\n` +
-                      `बिना सही मार्गदर्शन के, हर 10 में से 7 लोग उन लाभों को प्राप्त करने में असफल रहते हैं, जिनके वे हकदार हैं।\nApnaScheme यह सुनिश्चित करता है कि आप उनमें से एक न हों।\nसरकारी benefits पाओ \n${paymentUrl}\n\n` +
-                      `अपने दोस्तों को भेजें और ₹60 कमाएं:\n` +
-                      `https://wa.me/?text=मैंने%20ApnaScheme%20से%20योजनाएं%20प्राप्त%20की%20हैं!%20आप%20भी%20पाएं%20अपने%20लिए%20सरकारी%20योजनाएं:%20wa.me/917977594397?text=Hi\n\n` +
-                      `हर 3 दोस्तों के ₹49 भुगतान करने पर आपको ₹60 कैशबैक मिलेगा!`;
-     } else if (user.language === '3') {
-  closingMessage = `तुम्हाला मिळू शकतात ${eligibleSchemes.length} सरकारी योजना.\n\n` +
-                `या आठवड्यात आधीच 1000 हून अधिक वापरकर्त्यांना त्यांचे फायदे मिळाले आहेत.\nताबडतोब मिळवा:\n` +
-                `योजनांची संपूर्ण यादी\n` +
-                `अर्जासाठी थेट लिंक\n\n` +
-                `योग्य मार्गदर्शनाशिवाय, दहापैकी सात लोक त्यांना मिळायला हवे असलेले फायदे मिळवण्यात अयशस्वी ठरतात.\nApnaScheme हे सुनिश्चित करते की आपण त्यापैकी एक नाही.\nसरकारी लाभ मिळवा\n${paymentUrl}\n\n` +
-                `मित्रांना पाठवा आणि ₹60 मिळवा:\n` +
-                `https://wa.me/?text=मी%20ApnaScheme%20मधून%20योजना%20मिळवल्या!%20तुम्ही%20ही%20मिळवा:%20wa.me/917977594397?text=Hi\n\n` +
-                `प्रत्येक 3 मित्रांसाठી जे ₹49 भरतील तुम्हाला ₹60 कॅशबॅक मिळेल!`;
- } else if (user.language === '2') {
-      closingMessage = `You are eligible for ${eligibleSchemes.length} government schemes.\n\n` +
-                `1000+ users already got their benefits this week.\nGet\n` +
-                `Complete list of schemes\n` +
-                `Direct links for application\nAll for ₹49 — not even half a pizza 🍕\n\n` +
-                `Without the right guidance, 7 out of 10 people fail to get the benefits they deserve.\nApnaScheme ensures you’re not one of them.\nUnlock your government benefits\n${paymentUrl}\n\n` +
-                `Send to friends and earn ₹60:\n` +
-                `https://wa.me/?text=I%20got%20schemes%20from%20ApnaScheme!%20You%20should%20get%20them%20too:%20wa.me/917977594397?text=Hi\n\n` +
-                `For every 3 friends who pay ₹49, you will get ₹60 cashback!`;   
-      } else { // Gujarati
-  closingMessage = `તમારા માટે ${eligibleSchemes.length} સરકારી યોજનાઓ.\n\n` +
-                `આ અઠવાડિયામાં જ 1000+ ઉપયોગકર્તાઓને તેમના ફાયદા મળી ચુક્યા છે.\nતાત્કાલિક મેળવો:\n` +
-                `બધી પાત્ર યોજનાઓની યાદી\n` +
-                `સીધી અરજી લિંક્સ\n\n` +
-                `યોગ્ય માર્ગદર્શન વિના, 10 માંથી 7 લોકો તેમને મળવા લાયક લાભો મેળવવામાં નિષ્ફળ જાય છે.\nApnaScheme ખાતરી કરે છે કે તમે તેમાંનો એક નહિં બનો.\nતમારા ફાયદા મેળવો  \n${paymentUrl}\n\n` +
-                `મિત્રોને રેફર કરો અને ₹60 કમાઓ:\n` +
-                `https://wa.me/?text=મને%20ApnaScheme%20માંથી%20યોજનાઓ%20મળી!%20તમે%20પણ%20મેળવો:%20wa.me/917977594397?text=Hi\n\n` +
-                `દરેક 3 મિત્રો માટે જે ₹49 ચૂકવે છે તમને ₹60 કેશબેક મળશે!`;
-}
 
-      await sendMessage(phone, closingMessage);
+      const paymentUrl = `${req.protocol}://${req.get('host')}/pay?phone=${phone}${user.referredBy ? `&ref=${user.referredBy}` : ''}`;
+      
+      previewMessage += `${paymentUrl}\n\n`;
+      
+      // Add referral message
+      if (user.language === '1') {
+        previewMessage += `👥 **दोस्तों को भेजें, ₹30 कमाएं:**\n`;
+        previewMessage += `हर 3 दोस्तों के ₹9 भुगतान पर आपको ₹30 मिलेगा!\n`;
+        previewMessage += `https://wa.me/?text=मैंने%20ApnaScheme%20से%20${eligibleSchemes.length}%20योजनाएं%20प्राप्त%20की%20हैं!%20आप%20भी%20पाएं:%20wa.me/917977594397?text=Hi`;
+      } else if (user.language === '3') {
+        previewMessage += `👥 **मित्रांना पाठवा, ₹30 मिळवा:**\n`;
+        previewMessage += `प्रत्येक 3 मित्रांसाठी जे ₹9 भरतील तुम्हाला ₹30 मिळेल!\n`;
+        previewMessage += `https://wa.me/?text=मी%20ApnaScheme%20मधून%20${eligibleSchemes.length}%20योजना%20मिळवल्या!%20तुम्ही%20ही%20मिळवा:%20wa.me/917977594397?text=Hi`;
+      } else if (user.language === '4') {
+        previewMessage += `👥 **મિત્રોને રેફર કરો, ₹30 કમાઓ:**\n`;
+        previewMessage += `દરેક 3 મિત્રો માટે જે ₹9 ચૂકવે છે તમને ₹30 મળશે!\n`;
+        previewMessage += `https://wa.me/?text=મને%20ApnaScheme%20માંથી%20${eligibleSchemes.length}%20યોજનાઓ%20મળી!%20તમે%20પણ%20મેળવો:%20wa.me/917977594397?text=Hi`;
+      } else {
+        previewMessage += `👥 **Refer friends, earn ₹30:**\n`;
+        previewMessage += `Get ₹30 for every 3 friends who pay ₹9!\n`;
+        previewMessage += `https://wa.me/?text=I%20found%20${eligibleSchemes.length}%20government%20schemes%20with%20ApnaScheme!%20Check%20yours:%20wa.me/917977594397?text=Hi`;
+      }
+
+      // Send the preview message
+      await sendMessage(phone, previewMessage);
     }
 
     res.sendStatus(200);
