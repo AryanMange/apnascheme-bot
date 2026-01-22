@@ -103,7 +103,7 @@ const QUESTIONS = {
   1: [
     "आपका लिंग क्या है?\n(जवाब दें 1/2/3)\n1. पुरुष\n2. महिला\n3. अन्य",
     "आपकी उम्र कितनी है?\n(केवल संख्या में लिखें, जैसे: 18)",
-    "आप क्या करते हैं?\n(जवाब दें 1/2/3/4)\n1. छात्र\n2. बेरोज़गार\n3. नौकरीपेशा\n4. गृहिणी\n5. सेवानिवृत्त\n6. दिव्यांग",
+    "आप क्या करते हैं?\n(जवाब दें 1/2/3/4/5/6)\n1. छात्र\n2. बेरोज़गार\n3. नौकरीपेशा\n4. गृहिणी\n5. सेवानिवृत्त\n6. दिव्यांग",
     "आपकी वार्षिक आय कितनी है?\n(केवल संख्या में लिखें, जैसे: 120000)",
     "क्या आपका बैंक खाता है?\n(जवाब दें 1/2)\n1. हाँ\n2. नहीं",
     "आपका राज्य कौन सा है?\n(उदाहरण: महाराष्ट्र)",
@@ -112,8 +112,8 @@ const QUESTIONS = {
   2: [
     "What is your gender?\n(Reply 1/2/3)\n1. Male\n2. Female\n3. Other",
     "What is your age?\n (Enter number eg. 18)",
-    "What do you do?\n(Reply 1/2/3/4)\n1. Student\n2. Unemployed\n3. Employed\n4. Housewife\n5. Retired\n6. Disabled",
-    "What is your yearly income?\n (eg. 120000)",
+    "What do you do?\n(Reply 1/2/3/4/5/6)\n1. Student\n2. Unemployed\n3. Employed\n4. Housewife\n5. Retired\n6. Disabled",
+    "What is your household yearly income?\n (eg. 120000)",
     "Do you have a bank account?\n(Reply 1/2)\n1. Yes\n2. No",
     "Which state do you live in?\n (eg. Maharashtra)",
     "Do you belong to SC/ST/OBC/EWS category?\n(Reply 1/2)\n1. Yes\n2. No"
@@ -121,7 +121,7 @@ const QUESTIONS = {
   3: [
     "तुमचं लिंग काय आहे?\n(उत्तर द्या 1/2/3)\n1.पुरुष\n2.महिला\n3.इतर",
     "तुमचं वय किती आहे?\n(उदाहरण: 18)",
-    "तुम्ही काय करता?\n(उत्तर द्या 1/2/3/4)\n1. विद्यार्थी\n2. बेरोजगार\n3. नोकरी करता\n4. गृहिणी\n5. निवृत्त\n6. दिव्यांग",
+    "तुम्ही काय करता?\n(उत्तर द्या 1/2/3/4/5/6)\n1. विद्यार्थी\n2. बेरोजगार\n3. नोकरी करता\n4. गृहिणी\n5. निवृत्त\n6. दिव्यांग",
     "आपली वार्षिक उत्पन्न किती आहे?\n(फक्त संख्या लिहा, उदा: 120000)",
     "तुमचं बँक खाते आहे का?\n(उत्तर द्या 1/2)\n1. होय\n2. नाही",
     "तुमचं राज्य कोणतं?\n(उदा: महाराष्ट्र)",
@@ -130,7 +130,7 @@ const QUESTIONS = {
    4: [ // Gujarati questions
     "તમારું લિંગ શું છે?\n(જવાબ આપો 1/2/3)\n1. પુરુષ\n2. સ્ત્રી\n3. અન્ય",
     "તમારી ઉંમર કેટલી છે?\n(માત્ર નંબર લખો, દા.ત.: 18)",
-    "તમે શું કરો છો?\n(જવાબ આપો 1/2/3/4)\n1. વિદ્યાર્થી\n2. બેરોજગાર\n3. નોકરી કરનાર\n4. ગૃહિણી\n5. નિવૃત્ત\n6. દિવ્યાંગ",
+    "તમે શું કરો છો?\n(જવાબ આપો 1/2/3/4/5/6)\n1. વિદ્યાર્થી\n2. બેરોજગાર\n3. નોકરી કરનાર\n4. ગૃહિણી\n5. નિવૃત્ત\n6. દિવ્યાંગ",
     "તમારું વાર્ષિક આવક કેટલી છે?\n(માત્ર નંબર લખો, દા.ત.: 120000)",
     "શું તમારી પાસે બેંક એકાઉન્ટ છે?\n(જવાબ આપો 1/2)\n1. હા\n2. ના",
     "તમારું રાજ્ય કયું છે?\n(દા.ત.: ગુજરાત)",
@@ -360,7 +360,7 @@ app.get('/order', async (req, res) => {
     }
 
     const options = {
-      amount: 900, // ₹9 in paise (UPDATED from 4900)
+      amount: 100, // ₹9 in paise (UPDATED from 4900)
       currency: 'INR',
       receipt: `rcpt_${phone}_${Date.now()}`,
       notes: { phone }
@@ -392,7 +392,7 @@ app.get('/pay', async (req, res) => {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>₹9 Complete Scheme Access - ApnaScheme</title>
+    <title>₹9 Scheme Access - ApnaScheme</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -534,8 +534,10 @@ app.get('/pay', async (req, res) => {
 </head>
 <body>
     <div class="card">
-        <h2>₹9 Complete Scheme Access</h2>
-        <div class="price">5000+ users paid ₹9 today!</div>
+        <h2>ApnaScheme ₹9 Scheme Access</h2>
+        <div class="price">4999+ users discovered eligible schemes today</div>
+                <!-- Counter Section -->
+     
                 
         <div id="payment-status" class="payment-status">
             <div class="loader"></div>
@@ -560,7 +562,7 @@ app.get('/pay', async (req, res) => {
         const statusMessages = [
             "1 cup of chai = ₹20 | All your govt schemes = ₹9",
             "Almost ready...",
-            "Unlocking your schemes..."
+            "Setting up your plan..."
         ];
         let counter = 0;
         
@@ -584,7 +586,7 @@ app.get('/pay', async (req, res) => {
               amount: data.amount,
               currency: data.currency,
               name: 'ApnaScheme',
-              description: '₹9 Scheme Access', // UPDATED
+              description: '₹9 Scheme Access',
               order_id: data.orderId,
               handler: function(response) {
                 window.location.href = '/success?phone=' + phone;
@@ -803,9 +805,9 @@ app.get('/success', (req, res) => {
                 <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
             </svg>
         </div>
-        <h1>Payment Successful! 🎉</h1>
-        <p>You just unlocked your personalized government schemes for <strong>just ₹9</strong>!</p>
-        <p>Check your WhatsApp for all scheme details and application links.</p>
+        <h1>Payment Successful!</h1>,
+        <p>You just unlocked your personalized government benefit list.</p>1
+        <p>Check your WhatsApp for the scheme details.</p>
         
         <div class="divider"></div>
         
@@ -868,7 +870,6 @@ app.get('/success', (req, res) => {
 
   res.send(html);
 });
-
 app.post('/razorpay-webhook', bodyParser.raw({type: 'application/json'}), async (req, res) => {
   try {
     const secret = process.env.RAZORPAY_WEBHOOK_SECRET;
@@ -1154,32 +1155,32 @@ app.post('/gupshup', express.json(), async (req, res) => {
         let noSchemeMessage = '';
         
         if (user.language === '1') { // Hindi
-          noSchemeMessage = `माफ कीजिए, आपके लिए अभी कोई सरकारी योजना उपलब्ध नहीं है 😔\n\n` +
+          noSchemeMessage = `माफ कीजिए, आपके लिए अभी कोई सरकारी योजना उपलब्ध नहीं है \n\n` +
                           `नए स्कीम्स जोड़े जाते रहते हैं – कृपया 15 दिन बाद दोबारा जांचें।\n` +
                           `अपने दोस्तों को भेजें और ₹30 कमाएं:\n` +
                           `https://wa.me/?text=मैंने%20ApnaScheme%20से%20योजनाएं%20प्राप्त%20की%20हैं!%20आप%20भी%20पाएं%20अपने%20लिए%20सरकारी%20योजनाएं:%20wa.me/917977594397?text=Hi\n\n` +
-                          `हर 3 दोस्तों के ₹9 भुगतान करने पर आपको ₹30 मिलेगा! 💰`;
+                          `हर 3 दोस्तों के ₹9 भुगतान करने पर आपको ₹10 मिलेगा! `;
         } 
         else if (user.language === '3') { // Marathi
-          noSchemeMessage = `क्षमस्व, सध्या आपल्यासाठी कोणतीही सरकारी योजना उपलब्ध नाही 😔\n\n` +
+          noSchemeMessage = `क्षमस्व, सध्या आपल्यासाठी कोणतीही सरकारी योजना उपलब्ध नाही \n\n` +
                           `नवीन योजना सतत जोडल्या जातात – कृपया १५ दिवसांनी पुन्हा तपासा.\n` +
                           `मित्रांना पाठवा आणि ₹30 मिळवा:\n` +
                           `https://wa.me/?text=मी%20ApnaScheme%20मधून%20योजना%20मिळवल्या!%20तुम्ही%20ही%20मिळवा:%20wa.me/917977594397?text=Hi\n\n` +
-                          `प्रत्येक 3 मित्रांसाठी जे ₹9 भरतील तुम्हाला ₹30 मिळेल! 💰`;
+                          `प्रत्येक 3 मित्रांसाठी जे ₹9 भरतील तुम्हाला ₹10 मिळेल! `;
         } 
         else if (user.language === '4') { // Gujarati
-          noSchemeMessage = `માફ કરશો, હાલમાં તમારા માટે કોઈ સરકારી યોજના ઉપલબ્ધ નથી 😔\n\n` +
+          noSchemeMessage = `માફ કરશો, હાલમાં તમારા માટે કોઈ સરકારી યોજના ઉપલબ્ધ નથી \n\n` +
                           `નવી યોજનાઓ નિયમિત ઉમેરવામાં આવે છે - 15 દિવસ પછી ફરી તપાસો.\n` +
                           `મિત્રોને રેફર કરો અને ₹30 કમાઓ:\n` +
                           `https://wa.me/?text=મને%20ApnaScheme%20માંથી%20યોજનાઓ%20મળી!%20તમે%20પણ%20મેળવો:%20wa.me/917977594397?text=Hi\n\n` +
-                          `દરેક 3 મિત્રો માટે જે ₹9 ચૂકવે છે તમને ₹30 મળશે! 💰`;
+                          `દરેક 3 મિત્રો માટે જે ₹9 ચૂકવે છે તમને ₹10 મળશે! `;
         }
         else { // English (default)
-          noSchemeMessage = `Sorry, there are currently no government schemes available for you 😔\n\n` +
+          noSchemeMessage = `Sorry, there are currently no government schemes available for you \n\n` +
                           `New schemes are added regularly – check again in 15 days!\n` +
                           `Refer friends & earn ₹30:\n` +
                           `https://wa.me/?text=I%20got%20government%20schemes%20from%20ApnaScheme!%20You%20can%20too:%20wa.me/917977594397?text=Hi\n\n` +
-                          `Earn ₹30 for every 3 friends who pay ₹9! 💰`;
+                          `Earn ₹10 for every 3 friends who pay ₹9! `;
         }
 
         await sendMessage(phone, noSchemeMessage);
@@ -1193,64 +1194,60 @@ app.post('/gupshup', express.json(), async (req, res) => {
       let previewMessage = '';
       
       if (user.language === '1') { // Hindi
-        previewMessage = `🎯 **आपके लिए ${eligibleSchemes.length} योजनाएं मिलीं!**\n\n`;
-        previewMessage += `**मुफ्त पूर्वावलोकन (2 योजनाएं):**\n`;
+        previewMessage = `आपके लिए ${eligibleSchemes.length} योजनाएं मिलीं!\n\n`;
+        previewMessage += `मुफ्त पूर्वावलोकन (2 योजनाएं):\n`;
         topTwo.forEach((scheme, index) => {
           previewMessage += `${index + 1}. ${scheme.SchemeName}\n`;
         });
         
-        previewMessage += `\n💰 **सिर्फ ₹9 में पाएं सबकुछ:**\n`;
-        previewMessage += `✅ सभी ${eligibleSchemes.length} योजनाओं की पूरी लिस्ट\n`;
-        previewMessage += `✅ हर योजना के आवेदन लिंक\n`;
-        previewMessage += `✅ दस्तावेज़ चेकलिस्ट\n`;
-        previewMessage += `✅ 24x7 सपोर्ट\n\n`;
+        previewMessage += `\nसिर्फ ₹9 में पाएं सबकुछ:\n`;
+        previewMessage += ` सभी ${eligibleSchemes.length} योजनाओं की पूरी लिस्ट\n`;
+        previewMessage += ` हर योजना के आवेदन लिंक\n`;
+        previewMessage += ` 24x7 सपोर्ट\n\n`;
         
-        previewMessage += `📱 **अभी ₹9 पे करें (1 कप चाय से कम!):**\n`;
+        previewMessage += ` अभी ₹9 पे करें\n (1 कप चाय ☕ से कम!):\n`;
       } 
       else if (user.language === '2') { // English
-        previewMessage = `🎯 **Found ${eligibleSchemes.length} schemes for you!**\n\n`;
-        previewMessage += `**FREE Preview (2 schemes):**\n`;
+        previewMessage = `Found ${eligibleSchemes.length} schemes for you!\n\n`;
+        previewMessage += `FREE Preview (2 schemes):\n`;
         topTwo.forEach((scheme, index) => {
           previewMessage += `${index + 1}. ${scheme.SchemeName}\n`;
         });
         
-        previewMessage += `\n💰 **Get EVERYTHING for just ₹9:**\n`;
-        previewMessage += `✅ Complete list of all ${eligibleSchemes.length} schemes\n`;
-        previewMessage += `✅ Application links for each\n`;
-        previewMessage += `✅ Documents checklist\n`;
-        previewMessage += `✅ 24x7 support\n\n`;
+        previewMessage += `\nGet EVERYTHING for just ₹9:\n`;
+        previewMessage += ` Complete list of all ${eligibleSchemes.length} schemes\n`;
+        previewMessage += ` Application links for each\n`;
+        previewMessage += ` 24x7 support\n\n`;
         
-        previewMessage += `📱 **Pay ₹9 now (less than a chai!):**\n`;
+        previewMessage += `Pay ₹9 now\n (less than a chai ☕!):\n`;
       }
       else if (user.language === '3') { // Marathi
-        previewMessage = `🎯 **तुम्हाला ${eligibleSchemes.length} योजना सापडल्या!**\n\n`;
-        previewMessage += `**मोफत पूर्वावलोकन (2 योजना):**\n`;
+        previewMessage = `तुम्हाला ${eligibleSchemes.length} योजना सापडल्या!\n\n`;
+        previewMessage += `मोफत पूर्वावलोकन (2 योजना):\n`;
         topTwo.forEach((scheme, index) => {
           previewMessage += `${index + 1}. ${scheme.SchemeName}\n`;
         });
         
-        previewMessage += `\n💰 **फक्त ₹9 मध्ये सर्वकाही मिळवा:**\n`;
-        previewMessage += `✅ सर्व ${eligibleSchemes.length} योजनांची संपूर्ण यादी\n`;
-        previewMessage += `✅ प्रत्येकासाठी अर्ज लिंक\n`;
-        previewMessage += `✅ कागदपत्रांची यादी\n`;
-        previewMessage += `✅ 24x7 आधार\n\n`;
+        previewMessage += `\nफक्त ₹9 मध्ये सर्वकाही मिळवा:\n`;
+        previewMessage += ` सर्व ${eligibleSchemes.length} योजनांची संपूर्ण यादी\n`;
+        previewMessage += ` प्रत्येकासाठी अर्ज लिंक\n`;
+        previewMessage += ` 24x7 आधार\n\n`;
         
-        previewMessage += `📱 **आत्ताच ₹9 भरा (एक चहा पेक्षा कमी!):**\n`;
+        previewMessage += `आत्ताच ₹9 भरा (एक चहा पेक्षा कमी ☕!):\n`;
       }
       else if (user.language === '4') { // Gujarati
-        previewMessage = `🎯 **તમારા માટે ${eligibleSchemes.length} યોજનાઓ મળી!**\n\n`;
-        previewMessage += `**મફત પૂર્વાવલોકન (2 યોજનાઓ):**\n`;
+        previewMessage = `તમારા માટે ${eligibleSchemes.length} યોજનાઓ મળી!\n\n`;
+        previewMessage += `મફત પૂર્વાવલોકન (2 યોજનાઓ):\n`;
         topTwo.forEach((scheme, index) => {
           previewMessage += `${index + 1}. ${scheme.SchemeName}\n`;
         });
         
-        previewMessage += `\n💰 **માત્ર ₹9 માં બધું મેળવો:**\n`;
-        previewMessage += `✅ બધી ${eligibleSchemes.length} યોજનાઓની સંપૂર્ણ યાદી\n`;
-        previewMessage += `✅ દરેક માટે અરજી લિંક્સ\n`;
-        previewMessage += `✅ દસ્તાવેજોની યાદી\n`;
-        previewMessage += `✅ 24x7 સહાય\n\n`;
+        previewMessage += `\nમાત્ર ₹9 માં બધું મેળવો:**\n`;
+        previewMessage += ` બધી ${eligibleSchemes.length} યોજનાઓની સંપૂર્ણ યાદી\n`;
+        previewMessage += ` દરેક માટે અરજી લિંક્સ\n`;
+        previewMessage += ` 24x7 સહાય\n\n`;
         
-        previewMessage += `📱 **હમણાં ₹9 ચૂકવો (એક ચાના કરતાં ઓછા!):**\n`;
+        previewMessage += `હમણાં ₹9 ચૂકવો (એક ચાના કરતાં ઓછા ☕!):\n`;
       }
 
       // Generate referral code if not exists
@@ -1265,20 +1262,20 @@ app.post('/gupshup', express.json(), async (req, res) => {
       
       // Add referral message
       if (user.language === '1') {
-        previewMessage += `👥 **दोस्तों को भेजें, ₹30 कमाएं:**\n`;
-        previewMessage += `हर 3 दोस्तों के ₹9 भुगतान पर आपको ₹30 मिलेगा!\n`;
+        previewMessage += `दोस्तों को भेजें, ₹10 कमाएं:\n`;
+        previewMessage += `हर 3 दोस्तों के ₹9 भुगतान पर आपको ₹10 मिलेगा!\n`;
         previewMessage += `https://wa.me/?text=मैंने%20ApnaScheme%20से%20${eligibleSchemes.length}%20योजनाएं%20प्राप्त%20की%20हैं!%20आप%20भी%20पाएं:%20wa.me/917977594397?text=Hi`;
       } else if (user.language === '3') {
-        previewMessage += `👥 **मित्रांना पाठवा, ₹30 मिळवा:**\n`;
-        previewMessage += `प्रत्येक 3 मित्रांसाठी जे ₹9 भरतील तुम्हाला ₹30 मिळेल!\n`;
+        previewMessage += `मित्रांना पाठवा, ₹10 मिळवा:\n`;
+        previewMessage += `प्रत्येक 3 मित्रांसाठी जे ₹9 भरतील तुम्हाला ₹10 मिळेल!\n`;
         previewMessage += `https://wa.me/?text=मी%20ApnaScheme%20मधून%20${eligibleSchemes.length}%20योजना%20मिळवल्या!%20तुम्ही%20ही%20मिळवा:%20wa.me/917977594397?text=Hi`;
       } else if (user.language === '4') {
-        previewMessage += `👥 **મિત્રોને રેફર કરો, ₹30 કમાઓ:**\n`;
-        previewMessage += `દરેક 3 મિત્રો માટે જે ₹9 ચૂકવે છે તમને ₹30 મળશે!\n`;
+        previewMessage += `મિત્રોને રેફર કરો, ₹10 કમાઓ:\n`;
+        previewMessage += `દરેક 3 મિત્રો માટે જે ₹9 ચૂકવે છે તમને ₹10 મળશે!\n`;
         previewMessage += `https://wa.me/?text=મને%20ApnaScheme%20માંથી%20${eligibleSchemes.length}%20યોજનાઓ%20મળી!%20તમે%20પણ%20મેળવો:%20wa.me/917977594397?text=Hi`;
       } else {
-        previewMessage += `👥 **Refer friends, earn ₹30:**\n`;
-        previewMessage += `Get ₹30 for every 3 friends who pay ₹9!\n`;
+        previewMessage += `Refer friends, earn ₹10:\n`;
+        previewMessage += `Get ₹10 for every 3 friends who pay ₹9!\n`;
         previewMessage += `https://wa.me/?text=I%20found%20${eligibleSchemes.length}%20government%20schemes%20with%20ApnaScheme!%20Check%20yours:%20wa.me/917977594397?text=Hi`;
       }
 
