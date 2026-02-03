@@ -347,25 +347,7 @@ const getNextQuestion = (user) => {
 
 // Routes
 app.get('/', (req, res) => {
-  res.send('✅ ApnaScheme Bot is running with MongoDB integration\n
-           Privacy Policy
-Data Collected: We collect your phone number, demographic info (age, gender, occupation, income, state), and payment ID to match you with government schemes.
-
-Data Usage: Your information is used solely to find eligible schemes. We do not sell or share your personal data with third parties for marketing.
-
-Data Security: Your data is encrypted and stored securely in our database\n
-  Terms & Conditions
-Service Nature: ApnaScheme is a private information service, not a government agency. We provide scheme information; final approval rests with respective government departments.
-
-User Responsibility: You must provide accurate information. We are not liable for incorrect benefits due to false user data.
-
-Payments: The ₹9 fee is for accessing personalized scheme information and is non-refundable once the list is delivered (see refund policy)\n
-  Refund Policy
-No Refund After Delivery: Once you pay ₹9 and receive your personalized scheme list via WhatsApp, the payment is non-refundable.
-
-Eligible for Refund: Refunds are only issued if a technical error on our side prevents the scheme list from being delivered to your WhatsApp within 24 hours of payment.
-
-Process: To request a refund under eligible conditions, mail your payment receipt ID to apnascheme.in@gmail.com within 48 hours of payment.');
+  res.send('✅ ApnaScheme Bot is running with MongoDB integration');
 });
 
 // Razorpay Payment Flow - UPDATED TO ₹9
