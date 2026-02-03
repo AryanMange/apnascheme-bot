@@ -401,6 +401,7 @@ app.get('/', (req, res) => {
       
       <div class="contact">
         <h3>📞 Contact & Support</h3>
+        <p>Phone: <strong>+91 79775 94397</strong></p>
         <p>Email: <strong>apnascheme.in@gmail.com</strong></p>
         <p>Response Time: 24-48 hours</p>
       </div>
