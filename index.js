@@ -372,28 +372,28 @@ app.get('/', (req, res) => {
       <p>This is the backend server for the ApnaScheme WhatsApp bot that helps Indians discover eligible government schemes.</p>
       
       <div class="section">
-        <h2>📱 How to Use</h2>
+        <h2>• How to Use</h2>
         <p>1. Send "Hi" to <strong>+91 79775 94397</strong> on WhatsApp</p>
         <p>2. Answer 7 simple questions about yourself</p>
         <p>3. Get your personalized government scheme matches</p>
       </div>
       
       <div class="section">
-        <h2>🔒 Privacy Policy</h2>
+        <h2>• Privacy Policy</h2>
         <p><strong>Data Collected:</strong> We collect your phone number, demographic info (age, gender, occupation, income, state), and payment ID to match you with government schemes.</p>
         <p><strong>Data Usage:</strong> Your information is used solely to find eligible schemes. We do not sell or share your personal data with third parties for marketing.</p>
         <p><strong>Data Security:</strong> Your data is encrypted and stored securely in our database.</p>
       </div>
       
       <div class="section">
-        <h2>📄 Terms & Conditions</h2>
+        <h2>• Terms & Conditions</h2>
         <p><strong>Service Nature:</strong> ApnaScheme is a private information service, not a government agency. We provide scheme information; final approval rests with respective government departments.</p>
         <p><strong>User Responsibility:</strong> You must provide accurate information. We are not liable for incorrect benefits due to false user data.</p>
         <p><strong>Payments:</strong> The ₹9 fee is for accessing personalized scheme information and is non-refundable once the list is delivered (see refund policy).</p>
       </div>
       
       <div class="section">
-        <h2>💸 Refund Policy</h2>
+        <h2>• Refund Policy</h2>
         <p><strong>No Refund After Delivery:</strong> Once you pay ₹9 and receive your personalized scheme list via WhatsApp, the payment is non-refundable.</p>
         <p><strong>Eligible for Refund:</strong> Refunds are only issued if a technical error on our side prevents the scheme list from being delivered to your WhatsApp within 24 hours of payment.</p>
         <p><strong>Process:</strong> To request a refund under eligible conditions, mail your payment receipt ID to <strong>apnascheme.in@gmail.com</strong> within 48 hours of payment.</p>
@@ -401,7 +401,6 @@ app.get('/', (req, res) => {
       
       <div class="contact">
         <h3>📞 Contact & Support</h3>
-        <p>WhatsApp: <strong>+91 79775 94397</strong></p>
         <p>Email: <strong>apnascheme.in@gmail.com</strong></p>
         <p>Response Time: 24-48 hours</p>
       </div>
