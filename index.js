@@ -1264,8 +1264,8 @@ app.post('/gupshup', express.json(), async (req, res) => {
       let previewMessage = '';
       
       if (user.language === '1') { // Hindi
-        previewMessage = `आपके लिए ${eligibleSchemes.length} योजनाएं मिलीं!\n\n`;
-        previewMessage += `मुफ्त पूर्वावलोकन (2 योजनाएं):\n`;
+        previewMessage = `आपके लिए ${eligibleSchemes.length} योजनाएं मिलीं जिनका कुल लाभ ₹2,75,000 तक है!\n\n`;
+        previewMessage += `मुफ्त पूर्वावलोकन 💰\n`;
         topTwo.forEach((scheme, index) => {
           previewMessage += `${index + 1}. ${scheme.SchemeName}\n`;
         });
@@ -1278,8 +1278,8 @@ app.post('/gupshup', express.json(), async (req, res) => {
         previewMessage += ` अभी ₹9 पे करें\n (1 कप चाय ☕ से कम!):\n`;
       } 
       else if (user.language === '2') { // English
-        previewMessage = `Found ${eligibleSchemes.length} schemes for you!\n\n`;
-        previewMessage += `FREE Preview (2 schemes):\n`;
+        previewMessage = `Found ${eligibleSchemes.length} schemes worth ₹2,75,000 in benefits for you!\n\n`;
+        previewMessage += `FREE Preview 💰\n`;
         topTwo.forEach((scheme, index) => {
           previewMessage += `${index + 1}. ${scheme.SchemeName}\n`;
         });
@@ -1292,8 +1292,8 @@ app.post('/gupshup', express.json(), async (req, res) => {
         previewMessage += `Pay ₹9 now\n (less than a chai ☕!):\n`;
       }
       else if (user.language === '3') { // Marathi
-        previewMessage = `तुम्हाला ${eligibleSchemes.length} योजना सापडल्या!\n\n`;
-        previewMessage += `मोफत पूर्वावलोकन (2 योजना):\n`;
+        previewMessage = `तुम्हाला ${eligibleSchemes.length} योजना सापडल्या एकूण लाभ ₹2,75,000 पर्यंत!\n\n`;
+        previewMessage += `मोफत पूर्वावलोकन 💰\n`;
         topTwo.forEach((scheme, index) => {
           previewMessage += `${index + 1}. ${scheme.SchemeName}\n`;
         });
@@ -1306,8 +1306,8 @@ app.post('/gupshup', express.json(), async (req, res) => {
         previewMessage += `आत्ताच ₹9 भरा (एक चहा पेक्षा कमी ☕!):\n`;
       }
       else if (user.language === '4') { // Gujarati
-        previewMessage = `તમારા માટે ${eligibleSchemes.length} યોજનાઓ મળી!\n\n`;
-        previewMessage += `મફત પૂર્વાવલોકન (2 યોજનાઓ):\n`;
+        previewMessage = `તમારા માટે ${eligibleSchemes.length} યોજનાઓ મળી, કુલ લાભ ₹2,75,000 સુધી!\n\n`;
+        previewMessage += `મફત પૂર્વાવલોકન 💰\n`;
         topTwo.forEach((scheme, index) => {
           previewMessage += `${index + 1}. ${scheme.SchemeName}\n`;
         });
