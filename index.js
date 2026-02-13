@@ -1042,7 +1042,7 @@ app.post('/razorpay-webhook', bodyParser.raw({type: 'application/json'}), async 
     // Format message with proper line breaks and links - ENHANCED FOR ₹9 VALUE
     let message;
     if (lang === '1') { // Hindi
-      message = `✅ **आपकी पूरी योजना सूची (सिर्फ ₹9 में!):**\n\n`;
+      message = `आपकी पूरी योजना सूची ✔️\n\n`;
       message += `आपने सिर्फ ₹9 में पाए:\n`;
       message += `• ${eligibleSchemes.length} योजनाएं\n`;
       message += `• सभी के आवेदन लिंक\n`;
@@ -1055,11 +1055,11 @@ app.post('/razorpay-webhook', bodyParser.raw({type: 'application/json'}), async 
         message += `---\n`;
       });
       message += `\n🧾 आर्डर ID: ${payment.id}\n`;
-      message += `📞 मदद चाहिए? 7977594397 पर WhatsApp करें\n`;
+      message += `📞 सहायता चाहिए? mail-apnascheme.in@gmail.com\n`;
       message += `_आपकी सफलता हमारी खुशी है!_`;
     } 
     else if (lang === '3') { // Marathi
-      message = `✅ **तुमची संपूर्ण योजना यादी (फक्त ₹9 मध्ये!):**\n\n`;
+      message = `तुमची संपूर्ण योजना यादी ✔️\n\n`;
       message += `तुम्ही फक्त ₹9 मध्ये मिळवले:\n`;
       message += `• ${eligibleSchemes.length} योजना\n`;
       message += `• सर्वांचे अर्ज लिंक\n`;
@@ -1072,11 +1072,11 @@ app.post('/razorpay-webhook', bodyParser.raw({type: 'application/json'}), async 
         message += `---\n`;
       });
       message += `\n🧾 ऑर्डर ID: ${payment.id}\n`;
-      message += `📞 मदत हवी? 7977594397 वर WhatsApp करा\n`;
+      message += `📞 मदत हवी? mail-apnascheme.in@gmail.com\n`;
       message += `_तुमची यशस्वीता आमची आनंद आहे!_`;
     } 
     else if (lang === '4') { // Gujarati
-      message = `✅ **તમારી સંપૂર્ણ યોજનાઓની યાદી (માત્ર ₹9 માં!):**\n\n`;
+      message = `તમારી સંપૂર્ણ યોજનાઓની યાદી ✔️\n\n`;
       message += `તમે માત્ર ₹9 માં મેળવ્યું:\n`;
       message += `• ${eligibleSchemes.length} યોજનાઓ\n`;
       message += `• બધાની અરજી લિંક્સ\n`;
@@ -1089,14 +1089,14 @@ app.post('/razorpay-webhook', bodyParser.raw({type: 'application/json'}), async 
         message += `---\n`;
       });
       message += `\n🧾 ઓર્ડર ID: ${payment.id}\n`;
-      message += `📞 મદદ જોઈએ? 7977594397 પર WhatsApp કરો\n`;
+      message += `📞 મદદ જોઈએ છે? mail-apnascheme.in@gmail.com\n`;
       message += `_તમારી સફળતા અમારી ખુશી છે!_`;
     }
     else { // English (default)
-      message = `✅ **Your Complete Scheme List (for just ₹9!):**\n\n`;
-      message += `You got for just ₹9:\n`;
+      message = `Your Complete Scheme List ✔️ \n\n`;
+      message += `What you get for just ₹9:\n`;
       message += `• ${eligibleSchemes.length} schemes\n`;
-      message += `• Application links for all\n`;
+      message += `• Application links \n`;
       message += `• ₹${eligibleSchemes.length * 1000}+ potential benefit\n\n`;
       
       eligibleSchemes.forEach((scheme, index) => {
@@ -1106,7 +1106,7 @@ app.post('/razorpay-webhook', bodyParser.raw({type: 'application/json'}), async 
         message += `---\n`;
       });
       message += `\n🧾 Order ID: ${payment.id}\n`;
-      message += `📞 Need help? WhatsApp 7977594397\n`;
+      message += `📞 Need help? mail-apnascheme.in@gmail.com\n`;
       message += `_Your success is our happiness!_`;
     }
 
