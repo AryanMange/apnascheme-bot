@@ -870,13 +870,13 @@ app.get('/success', (req, res) => {
                 <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
             </svg>
         </div>
-        <h1>Payment Successful!</h1>,
-        <p>You just unlocked your personalized government benefit list.</p>1
+        <h1>Payment Successful!</h1>
+        <p>You just unlocked your personalized government benefit list 😉</p>
         <p>Check your WhatsApp for the scheme details.</p>
         
         <div class="divider"></div>
         
-        <a href="https://wa.me/7977594397}" class="whatsapp-btn">
+        <a href="https://wa.me/7977594397" class="whatsapp-btn">
             <span class="whatsapp-icon"></span>
             Check on WhatsApp
         </a>
