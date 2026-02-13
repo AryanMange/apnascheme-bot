@@ -653,9 +653,14 @@ app.get('/pay', async (req, res) => {
               name: 'ApnaScheme',
               description: '₹9 Scheme Access',
               order_id: data.orderId,
-              handler: function(response) {
-                window.location.href = '/success?phone=' + phone;
-              },
+             handler: function(response) {
+    // 👇 ADD THIS ENTIRE BLOCK (replace the existing line)
+    rzp.close(); // Close modal first
+    setTimeout(function() {
+      window.location.href = '/success?phone=' + phone;
+    }, 100);
+    // 👆 REPLACE the old line: window.location.href = '/success?phone=' + phone;
+  },
               prefill: {
                 contact: phone
               },
@@ -876,7 +881,7 @@ app.get('/success', (req, res) => {
         
         <div class="divider"></div>
         
-        <a href="https://wa.me/7977594397" class="whatsapp-btn">
+        <a href="https://wa.me/917977594397" class="whatsapp-btn">
             <span class="whatsapp-icon"></span>
             Check on WhatsApp
         </a>
