@@ -1020,13 +1020,13 @@ app.post('/razorpay-webhook', bodyParser.raw({type: 'application/json'}), async 
           const lang = referrer.language || '2';
           let message = '';
           if (lang === '1') {
-            message = `बधाई हो! आपके 3 referrals ने ₹9 भुगतान किया है। ₹10 cashback जल्द भेजा जाएगा।`;
+            message = `बधाई हो! आपके 3 referrals ने ₹9 भुगतान किया है। ₹6 cashback जल्द भेजा जाएगा।`;
           } else if (lang === '3') {
-            message = `अभिनंदन! तुमच्या 3 referrals ने ₹9 भरले आहेत। ₹10 cashback लवकरच पाठवला जाईल।`;
+            message = `अभिनंदन! तुमच्या 3 referrals ने ₹9 भरले आहेत। ₹6 cashback लवकरच पाठवला जाईल।`;
           } else if (lang === '4') {
-            message = `અભિનંદન! તમારા 3 referrals ને ₹9 ચુકવણી કરી છે। ₹10 કેશબેક ટૂંક સમયમાં મોકલવામાં આવશે।`;
+            message = `અભિનંદન! તમારા 3 referrals ને ₹9 ચુકવણી કરી છે। ₹6 કેશબેક ટૂંક સમયમાં મોકલવામાં આવશે।`;
           } else {
-            message = `Congratulations! Your 3 referrals paid ₹9. ₹10 cashback will be sent shortly.`;
+            message = `Congratulations! Your 3 referrals paid ₹9. ₹6 cashback will be sent shortly.`;
           }
           
           await sendMessage(referrer.phone, message);
