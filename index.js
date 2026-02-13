@@ -425,7 +425,7 @@ app.get('/order', async (req, res) => {
     }
 
     const options = {
-      amount: 100, // ₹9 in paise (UPDATED from 4900)
+      amount: 900, // ₹9 in paise (UPDATED from 4900)
       currency: 'INR',
       receipt: `rcpt_${phone}_${Date.now()}`,
       notes: { phone }
